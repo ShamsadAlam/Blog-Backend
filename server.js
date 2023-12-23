@@ -1,14 +1,20 @@
 const express = require("express");
 const cors = require("cors");
-const app = express();
+const bodyParser = require("body-parser");
+const connectDatabase = require("./config/database");
 require("dotenv").config();
+
+const app = express();
+
 app.use(express.json());
 app.use(cors());
-const connectDatabase = require("./config/database");
+app.use(bodyParser.json());
 
-const task = require("./routes/TaskRoutes");
+const blogs = require("./routes/BlogRoutes");
+const user = require("./routes/userRoutes");
 
-app.use("/api/blog", task);
+app.use("/api/blog", user);
+app.use("/api/blogs", blogs);
 
 //Connecting to database
 connectDatabase();
