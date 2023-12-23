@@ -14,3 +14,5 @@ router.route("/login").post(LoginUser);
 
 // Logout route
 router.route("/logout").get(Logout);
+
+module.exports = router;

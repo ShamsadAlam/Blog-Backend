@@ -1,4 +1,3 @@
-const crypto = require("crypto");
 const User = require("../models/userModels");
 const sendToken = require("../utils/jwtToken");
 
@@ -11,7 +10,7 @@ exports.RegisterUser = async (req, res, next) => {
       email,
       password,
     });
-    res.status(201).json({ message: "User registered successfully" });
+    sendToken(user, 201, res);
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error" });
   }
@@ -34,14 +33,14 @@ exports.LoginUser = async (req, res, next) => {
         message: "user not found",
       });
     }
-    const isPasswordMatched = User.comparePassword(password);
+    const isPasswordMatched = await user.comparePassword(password);
     if (!isPasswordMatched) {
       return res.status(401).json({
         success: false,
         message: "password not matched",
       });
     }
-    sendToken(user, 201, res);
+    sendToken(user, 200, res);
   } catch (error) {
     res.status(500).json({
       message: "Internal Server Error",

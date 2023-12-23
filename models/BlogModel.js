@@ -11,7 +11,7 @@ const BlogSchema = new mongoose.Schema({
     required: [true, "Please enter description"],
   },
   author: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.Schema.ObjectId,
     ref: "User",
   },
 });
