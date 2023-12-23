@@ -2,8 +2,8 @@ const Blogs = require("../models/BlogModel");
 
 //Create Blogs
 exports.CreateBlog = async (req, res) => {
-  const { title, description } = req.body;
-  const blog = await Blogs.create({ title, description });
+  const { title, content, author } = req.body;
+  const blog = await Blogs.create({ title, content, author });
   res.status(200).json({
     success: true,
     blog,
@@ -12,10 +12,10 @@ exports.CreateBlog = async (req, res) => {
 
 //Get All Blogs
 exports.AllBlogs = async (req, res) => {
-  const Blogs = await Blogs.find();
+  const blogs = await Blogs.find();
   res.status(200).json({
     success: true,
-    Blogs,
+    blogs,
   });
 };
 

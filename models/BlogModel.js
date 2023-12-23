@@ -8,7 +8,7 @@ const BlogSchema = new mongoose.Schema({
   },
   content: {
     type: String,
-    required: [true, "Please enter description"],
+    required: [true, "Please enter content"],
   },
   author: {
     type: mongoose.Schema.ObjectId,
